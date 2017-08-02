@@ -16,8 +16,6 @@ public class UserContoller {
 	
 	@PostMapping("/users")
 	public String create(User user) {
-		System.out.println(user.getEmail());
-		System.out.println(user.getUserId());
 		users.add(user);
 		System.out.println("size : " + users.size());
 		
