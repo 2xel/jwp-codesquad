@@ -50,4 +50,20 @@ public class UserContoller {
 		mav.setViewName("user/profile");
 		return mav;
 	}
+	
+	//회원정보 수정페이지로 이동
+	@GetMapping("/user/{id}/form")
+	public ModelAndView updateform(@PathVariable Long id) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("user", userRepository.findOne(id));
+		mav.setViewName("user/updateForm");
+		return mav;
+	}
+	
+	//회원정보 수정하기
+	@PostMapping("/user/{id}")
+	public String update(@PathVariable Long id, User user) {
+		userRepository.save(user);
+		return "redirect:/users";
+	}
 }

@@ -46,4 +46,12 @@ public class QnaController {
 		return mav;
 	}
 	
+	//질문글 수정하기 페이지
+	@GetMapping()
+	public ModelAndView updateForm(@PathVariable Long id) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("qna", qnaRepository.findOne(id));
+		mav.setViewName("qna/updateForm");
+		return mav;
+	}
 }
