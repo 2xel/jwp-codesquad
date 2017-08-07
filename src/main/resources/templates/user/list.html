@@ -6,17 +6,17 @@
           <table class="table table-hover">
               <thead>
                 <tr>
-                    <th>#</th> <th>»ç¿ëÀÚ ¾ÆÀÌµğ</th> <th>ÀÌ¸§</th> <th>ÀÌ¸ŞÀÏ</th><th></th>
+                    <th>#</th> <th>ì‚¬ìš©ì ì•„ì´ë””</th> <th>ì´ë¦„</th> <th>ì´ë©”</th><th></th>
                 </tr>
               </thead>
               <tbody>
               	{{#users}}
                 <tr>
-                    <th scope="row">{{@index}}</th> 
+                    <th scope="row">{{id}}</th> 
                     <td>{{userId}}</td> 
-                    <td><a href="/users/{{@index}}">{{name}}</a></td> 
+                    <td><a href="/users/{{id}}">{{name}}</a></td> 
                     <td>{{email}}</td>
-                    <td><a href="#" class="btn btn-success" role="button">¼öÁ¤</a></td>
+                    <td><a href="#" class="btn btn-success" role="button">ìˆ˜ì •</a></td>
                 </tr>
                 {{/users}}
               </tbody>

@@ -1,9 +1,24 @@
 package com.codesquad.dao;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Qna {
+	@Id
+	@GeneratedValue
+	Long id;
 	String write;
 	String title;
 	String contents;
+		
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getWrite() {
 		return write;
 	}

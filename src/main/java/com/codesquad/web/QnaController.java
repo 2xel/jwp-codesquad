@@ -1,7 +1,6 @@
 package com.codesquad.web;
 
-import java.util.ArrayList;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,10 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.codesquad.dao.Qna;
+import com.codesquad.dao.QnaRepository;
 
 @Controller
 public class QnaController {
-	ArrayList<Qna> qnas = new ArrayList<>();
+	@Autowired
+	QnaRepository qnaRepository;
 	
 	//질문 폼 이동
 	@GetMapping("/qnas")
@@ -23,8 +24,7 @@ public class QnaController {
 	//질문작성 한 후 전송
 	@PostMapping("/qnas")
 	public String create(Qna qna) {
-		qnas.add(qna);
-		System.out.println(qnas.size());
+		qnaRepository.save(qna);
 		return "redirect:/";
 	}
 	
@@ -32,19 +32,16 @@ public class QnaController {
 	@GetMapping("/")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("qnas", qnas);
+		mav.addObject("qnas", qnaRepository.findAll());
 		mav.setViewName("/index");
 		return mav;
 	}
 	
 	//질문글 상세보기
-	@GetMapping("/qnas/{index}")
-	public ModelAndView show(@PathVariable int index) {
-		Qna qna = qnas.get(index);
+	@GetMapping("/qnas/{id}")
+	public ModelAndView show(@PathVariable Long id) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("write", qna.getWrite());
-		mav.addObject("contents",qna.getContents());
-		mav.addObject("title",qna.getTitle());
+		mav.addObject("qna", qnaRepository.findOne(id));
 		mav.setViewName("qna/show");
 		return mav;
 	}
