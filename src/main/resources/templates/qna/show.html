@@ -4,7 +4,7 @@
     <div class="col-md-12 col-sm-12 col-lg-12">
         <div class="panel panel-default">
           <header class="qna-header">
-              <h2 class="qna-title">{{qna.title}}</h2>
+              <h2 class="qna-title">{{questions.title}}</h2>
           </header>
           <div class="content-main">
               <article class="article">
@@ -13,7 +13,7 @@
                           <img src="https://graph.facebook.com/v2.3/100000059371774/picture" class="article-author-thumb" alt="">
                       </div>
                       <div class="article-header-text">
-                          <a href="/users/92/kimmunsu" class="article-author-name">{{qna.write}}</a>
+                          <a href="/users/92/kimmunsu" class="article-author-name">{{questions.write}}</a>
                           <a href="/questions/413" class="article-header-time" title="퍼머링크">
                               2015-12-30 01:47
                               <i class="icon-link"></i>
@@ -21,17 +21,17 @@
                       </div>
                   </div>
                   <div class="article-doc">
-                      {{qna.contents}}
+                      {{questions.contents}}
                   </div>
                   <div class="article-util">
                       <ul class="article-util-list">
                           <li>
-                              <a class="link-modify-article" href="/questions/423/form">수정</a>
+                              <a class="link-modify-article" href="/questions/{{id}}/form">수정</a>
                           </li>
                           <li>
-                              <form class="form-delete" action="/questions/423" method="POST">
+                              <form class="form-delete" action="/questions/{{id}}" method="POST">
                                   <input type="hidden" name="_method" value="DELETE">
-                                  <button class="link-delete-article" type="submit">삭</button>
+                                  <button class="link-delete-article" type="submit">삭제</button>
                               </form>
                           </li>
                           <li>

@@ -60,7 +60,7 @@ public class UserContoller {
 		return mav;
 	}
 	
-	//회원정보 수정하기
+	//회원정보 수정완료
 	@PostMapping("/user/{id}")
 	public String update(@PathVariable Long id, User user) {
 		userRepository.save(user);

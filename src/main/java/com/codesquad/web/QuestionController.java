@@ -7,24 +7,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.codesquad.dao.Qna;
-import com.codesquad.dao.QnaRepository;
+import com.codesquad.dao.Question;
+import com.codesquad.dao.QuestionRepository;
 
 @Controller
-public class QnaController {
+public class QuestionController {
 	@Autowired
-	QnaRepository qnaRepository;
+	QuestionRepository questionRepository;
 	
 	//질문 폼 이동
-	@GetMapping("/qnas")
+	@GetMapping("/questions")
 	public String form() {
 		return "/qna/form";
 	}
 	
-	//질문작성 한 후 전송
-	@PostMapping("/qnas")
-	public String create(Qna qna) {
-		qnaRepository.save(qna);
+	//질문작성완료 전송
+	@PostMapping("/questions")
+	public String create(Question question) {
+		questionRepository.save(question);
 		return "redirect:/";
 	}
 	
@@ -32,26 +32,32 @@ public class QnaController {
 	@GetMapping("/")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("qnas", qnaRepository.findAll());
+		mav.addObject("questions", questionRepository.findAll());
 		mav.setViewName("/index");
 		return mav;
 	}
 	
-	//질문글 상세보기
-	@GetMapping("/qnas/{id}")
+	//질문 상세보기
+	@GetMapping("/questions/{id}")
 	public ModelAndView show(@PathVariable Long id) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("qna", qnaRepository.findOne(id));
+		mav.addObject("questions", questionRepository.findOne(id));
 		mav.setViewName("qna/show");
 		return mav;
 	}
 	
-	//질문글 수정하기 페이지
-	@GetMapping()
+	//질문 수정하기 폼 이동
+	@GetMapping("/questions/{id}/form")
 	public ModelAndView updateForm(@PathVariable Long id) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("qna", qnaRepository.findOne(id));
+		mav.addObject("questions", questionRepository.findOne(id));
 		mav.setViewName("qna/updateForm");
 		return mav;
+	}
+	
+	@PostMapping("/questions/{id}/form")
+	public String update(@PathVariable Long id, Question question) {
+		questionRepository.save(question);
+		return "redirect:/";
 	}
 }
