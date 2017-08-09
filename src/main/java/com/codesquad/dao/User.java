@@ -50,5 +50,20 @@ public class User {
 		this.email = email;
 	}
 	
+	public boolean update(User user) {
+		if (this.password.equals(user.password)) {
+			this.name = user.name;
+			this.email = user.email;
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean matchPassword(String password) {
+		return this.password.equals(password);
+	}
+	public boolean matchId(Long id) {
+		return this.id.equals(id);
+	}
 	
 }
